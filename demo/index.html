@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script> -->
+    <script src="https://unpkg.com/figma-development-kit@^1/dist/fdk.umd.js"></script>
+</head>
+<body>
+    <button class="js-login-button">login</button>
+    <button class="js-reset-button">reset cache</button>
+    <output class="js-token"></output>
+    
+    <script>
+        const figmaApi = new fdk.FigmaApi({
+            clientId: 'cWdGmOYOBBVSIuPoFUdjjf',
+            clientSecrete: '64NFGYGuJ2r0WzHOfUEPzSlUEomVU0',
+            redirectUri: 'https://adamplouff.github.io/aeux-figma/dist/callback.html',
+        });
+        document.querySelector('.js-login-button').onclick = () => figmaApi.getOAuth2Token().then(token => {
+            /* display the token in the UI */
+            document.querySelector('.js-token').textContent = token;
+        });
+        document.querySelector('.js-reset-button').onclick = () => {
+            /* reset local storage will force user to re-authroize */
+            localStorage.clear();
+            document.querySelector('.js-token').textContent = '';
+        }
+    </script>
+</body>
+</html>
