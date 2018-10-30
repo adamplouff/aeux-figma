@@ -15,19 +15,23 @@
     <output class="js-token"></output>
     
     <script>
+        checkToken();
         const figmaApi = new fdk.FigmaApi({
             clientId: 'cWdGmOYOBBVSIuPoFUdjjf',
             clientSecrete: '64NFGYGuJ2r0WzHOfUEPzSlUEomVU0',
             redirectUri: 'https://adamplouff.github.io/aeux-figma/dist/callback.html',
         });
-        document.querySelector('.js-login-button').onclick = () => figmaApi.getOAuth2Token().then(token => {
-            /* display the token in the UI */
-            document.querySelector('.js-token').textContent = token;
-        });
+        document.querySelector('.js-login-button').onclick = () => checkToken();
         document.querySelector('.js-reset-button').onclick = () => {
             /* reset local storage will force user to re-authroize */
             localStorage.clear();
             document.querySelector('.js-token').textContent = '';
+        }
+        function checkToken() {
+            figmaApi.getOAuth2Token().then(token => {
+                /* display the token in the UI */
+                document.querySelector('.js-token').textContent = token;
+            });
         }
     </script>
 </body>
