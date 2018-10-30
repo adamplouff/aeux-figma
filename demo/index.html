@@ -8,13 +8,14 @@
     <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <script src="main.js"></script> -->
     <script src="https://unpkg.com/figma-development-kit@^1/dist/fdk.umd.js"></script>
+    <script src="app.js"></script>
 </head>
 <body>
     <button class="js-login-button">login</button>
     <button class="js-reset-button">reset cache</button>
     <output class="js-token"></output>
-
-    001
+    <br><br><br>
+    002
     
     <script>
         const figmaApi = new fdk.FigmaApi({
@@ -22,8 +23,11 @@
             clientSecrete: '64NFGYGuJ2r0WzHOfUEPzSlUEomVU0',
             redirectUri: 'https://adamplouff.github.io/aeux-figma/dist/callback.html',
         });
-
+        
+        /* Check the local token against the auth'd at initialize*/
         checkToken();
+        
+
         document.querySelector('.js-login-button').onclick = () => checkToken();
         document.querySelector('.js-reset-button').onclick = () => {
             /* reset local storage will force user to re-authroize */
@@ -33,6 +37,8 @@
         function checkToken() {
             figmaApi.getOAuth2Token().then(token => {
                 /* display the token in the UI */
+                console.log(token);
+                
                 document.querySelector('.js-token').textContent = token;
             });
         }
