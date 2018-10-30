@@ -13,14 +13,17 @@
     <button class="js-login-button">login</button>
     <button class="js-reset-button">reset cache</button>
     <output class="js-token"></output>
+
+    001
     
     <script>
-        checkToken();
         const figmaApi = new fdk.FigmaApi({
             clientId: 'cWdGmOYOBBVSIuPoFUdjjf',
             clientSecrete: '64NFGYGuJ2r0WzHOfUEPzSlUEomVU0',
             redirectUri: 'https://adamplouff.github.io/aeux-figma/dist/callback.html',
         });
+
+        checkToken();
         document.querySelector('.js-login-button').onclick = () => checkToken();
         document.querySelector('.js-reset-button').onclick = () => {
             /* reset local storage will force user to re-authroize */
